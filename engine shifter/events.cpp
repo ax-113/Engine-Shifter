@@ -6,10 +6,10 @@
 #include "funtions.h"
 
 
-void start_event(sf::RenderWindow Rwindow) {
+void start_event(sf::RenderWindow& window) {
 
 }
 
-void update_event(sf::RenderWindow Rwindow) {
+void update_event(sf::RenderWindow& window) {
 
 }

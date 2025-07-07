@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
+#include <iostream>
 #include "funtions.h"
 
 void randomize() {
@@ -28,4 +29,12 @@ void animation_draw(int amount_sprites_in_column, int row_to_draw, int frame_wid
 		}
 	}
 	WINDOW.draw(sprite);
+}
+
+sf::Sprite load_sprite(std::string path)
+{
+	sf::Texture texture;
+	if (!texture.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
+	sf::Sprite sprite(texture);
+	return sprite;
 }

@@ -1,0 +1,24 @@
+CAN EDIT:
+- events.cpp
+- #region CAN EDIT on main.cpp
+
+EVENTS: 
+
+- start_event
+	everything that you need to do when the game starts.
+- update_event
+	everything that you need to do each frame of the game.
+
+ORIGINAL FUNTIONS:
+
+- load_animation_spritesheet
+	goes on start_event, prepares the spritesheet to animate.
+- animation_draw
+	goes on update_event, switchs between frames prepared on load_animation_spritesheet.
+- load_sprite
+	goes in the create event, prepares the texture and sprite image from the path.
+
+EXISTING FUNTIONS:
+
+- window.draw
+	draws the sprite you put inside the ().

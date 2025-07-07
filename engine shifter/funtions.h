@@ -4,10 +4,14 @@
 #include <cstdlib>
 #include <ctime>
 #include <string>
-
-void randomize();
-void load_animation_spritesheet(sf::Sprite sprite, int frame_width, int frame_height);
-void animation_draw(int amount_sprites_in_column, int row_to_draw, int frame_width, int frame_height, sf::Sprite sprite, float maxTime, sf::RenderWindow WINDOW, int timer, int temp_val);
 void start_event(sf::RenderWindow& window);
 void update_event(sf::RenderWindow& window);
+
+void randomize();
+
+sf::Sprite load_animation_spritesheet(std::string path, int frame_width, int frame_height);
+void animation_draw(int amount_sprites_in_column, int row_to_draw, int frame_width, int frame_height, sf::Sprite sprite, float maxTime, sf::RenderWindow WINDOW, int timer, int temp_val);
 sf::Sprite load_sprite(std::string path);
+void sprite_draw(sf::Sprite sprite, sf::RenderWindow WINDOW);
+sf::Sprite load_tileset(std::string path, int tile_width, int tile_height);
+void tile_draw(sf::Sprite tilemap, sf::RenderWindow WINDOW, int tile_width, int tile_height, int row, int column);

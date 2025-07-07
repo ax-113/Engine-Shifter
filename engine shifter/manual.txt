@@ -1,3 +1,7 @@
+DISCORD:
+
+https://discord.gg/jE7q8QuK
+
 CAN EDIT:
 - events.cpp
 - #region CAN EDIT on main.cpp
@@ -16,9 +20,10 @@ ORIGINAL FUNTIONS:
 - animation_draw
 	goes on update_event, switchs between frames prepared on load_animation_spritesheet.
 - load_sprite
-	goes in the create event, prepares the texture and sprite image from the path.
-
-EXISTING FUNTIONS:
-
-- window.draw
-	draws the sprite you put inside the ().
+	goes in the start_event, prepares the texture and sprite image from the path.
+- sprite_draw
+	goes in the update_event, draws a single frame sprite.
+- load_tileset
+	goeas in the start_event, prepares the tileset from the path.
+- tile_draw
+	goeas in the update_event, draws a specific tile on a tileset.

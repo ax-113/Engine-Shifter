@@ -9,11 +9,14 @@
 
 int main()
 {
+#pragma region CAN EDIT
     int gameWidth = 512;
     int gameHeight = 288;
     std::string name = "Juego 1";
     int cameraWidth = 288;
     int cameraHeight = 144;
+#pragma endregion
+#pragma region DO NOT EDIT
 
     sf::RenderWindow window(sf::VideoMode(cameraWidth, gameHeight) , name);
 
@@ -37,4 +40,5 @@ int main()
         window.display();
     }
     return 0;
+#pragma endregion
 }

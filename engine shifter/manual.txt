@@ -13,7 +13,7 @@ EVENTS:
 - update_event
 	everything that you need to do each frame of the game.
 
-ORIGINAL FUNTIONS:
+DRAWING FUNTIONS:
 
 - load_animation_spritesheet
 	goes on start_event, prepares the spritesheet to animate.
@@ -24,6 +24,13 @@ ORIGINAL FUNTIONS:
 - sprite_draw
 	goes in the update_event, draws a single frame sprite.
 - load_tileset
-	goeas in the start_event, prepares the tileset from the path.
+	goes in the start_event, prepares the tileset from the path.
 - tile_draw
-	goeas in the update_event, draws a specific tile on a tileset.
+	goes in the update_event, draws a specific tile on a tileset.
+
+MUSIC FUNTIONS:
+
+- load_music
+	goes in the start_event, prepares the music.
+- music_play
+	goeas in the update_event or in the start_event, plays music when not playing.

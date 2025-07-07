@@ -62,3 +62,17 @@ void tile_draw(sf::Sprite tilemap, sf::RenderWindow WINDOW, int tile_width, int 
 	tilemap.setTextureRect({ {row * tile_width, column * tile_height},{tile_width, tile_height} });
 	WINDOW.draw(tilemap);
 }
+
+std::unique_ptr<sf::Music> load_music(std::string& path) {
+	auto music = std::make_unique<sf::Music>();
+	if (!music->openFromFile(path)) { std::cerr << "Failed to load music: " << path; }
+	return music;
+}
+
+void music_play(std::unique_ptr<sf::Music> music)
+	{
+		if (music->getStatus() != sf::SoundSource::Playing)
+		{
+			music->play();
+		}
+	}

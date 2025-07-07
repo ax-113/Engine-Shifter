@@ -15,3 +15,5 @@ sf::Sprite load_sprite(std::string path);
 void sprite_draw(sf::Sprite sprite, sf::RenderWindow WINDOW);
 sf::Sprite load_tileset(std::string path, int tile_width, int tile_height);
 void tile_draw(sf::Sprite tilemap, sf::RenderWindow WINDOW, int tile_width, int tile_height, int row, int column);
+std::unique_ptr<sf::Music> load_music(std::string& path);
+void music_play(std::unique_ptr<sf::Music> music);

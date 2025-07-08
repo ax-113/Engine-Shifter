@@ -15,7 +15,7 @@ sf::Sprite load_animation_spritesheet(std::string path, int frame_width, int fra
 	if (!texture.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
 	sf::Sprite sprite(texture);
 	sprite.setTextureRect({ {0,0},{frame_width,frame_height} });
-	sprite.setOrigin({ sprite.getTextureRect().width / 2.0, sprite.getTextureRect().height / 2.0 });
+	sprite.setOrigin({ sprite.getTextureRect().width / 2.0f, sprite.getTextureRect().height / 2.0f });
 	return sprite;
 }	 
 
@@ -53,7 +53,7 @@ sf::Sprite load_tileset(std::string path, int tile_width, int tile_height)
 	if (!texture.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
 	sf::Sprite sprite(texture);
 	sprite.setTextureRect({ {0,0},{tile_width,tile_height} });
-	sprite.setOrigin({ sprite.getTextureRect().width / 2.0, sprite.getTextureRect().height / 2.0 });
+	sprite.setOrigin({ sprite.getTextureRect().width / 2.0f, sprite.getTextureRect().height / 2.0f });
 	return sprite;
 }
 
@@ -88,3 +88,25 @@ bool check_key_press(char letter)
 		}
 		return false;
 }
+
+bool click_on_sprite(short button, sf::Sprite sprite) 
+{
+	sf::Vector2i position = sf::Mouse::getPosition();
+	sf::Mouse::Button temp;
+	switch (button) {
+	case (1):
+		temp = sf::Mouse::Button::Left;
+		break;
+	case (2):
+		temp = sf::Mouse::Button::Right;
+		break;
+	case (3):
+		temp = sf::Mouse::Button::Middle;
+		break;
+	}
+	if (sf::Mouse::isButtonPressed(temp) && position.x >= sprite.getPosition().x && position.x <= sprite.getPosition().x + sprite.getScale().x && position.y >= sprite.getPosition().y && position.y <= sprite.getPosition().y + sprite.getScale().y){
+		return true;
+	}
+
+}
+

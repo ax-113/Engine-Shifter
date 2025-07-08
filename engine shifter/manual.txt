@@ -34,3 +34,8 @@ MUSIC FUNTIONS:
 	goes in the start_event, prepares the music.
 - music_play
 	goeas in the update_event or in the start_event, plays music when not playing.
+
+GENERAL FUNTIONS:
+
+- check_key_press
+	goeas in the start event, gives true if the letter from the char is being pressed.

@@ -110,3 +110,21 @@ bool click_on_sprite(short button, sf::Sprite sprite)
 
 }
 
+bool check_collision(sf::Sprite spr_1, sf::Sprite spr_2)
+{
+	int x1 = spr_1.getPosition().x;
+	int x2 = spr_2.getPosition().x;
+	int y1 = spr_1.getPosition().y;
+	int y2 = spr_2.getPosition().y;
+	int w1 = spr_1.getScale().x;
+	int w2 = spr_2.getScale().x;
+	int h1 = spr_1.getScale().y;
+	int h2 = spr_2.getScale().y;
+
+	if (x1 >= x2 + w2 && x1 <= x2 && y1 >= y2 + h2 && y1 <= y2) { return true; }
+	if (x1 >= x2 + w2 && x1 <= x2 && y1 + h1 >= y2 + h2 && y1 + h1 <= y2) { return true; }
+	if (x1 + w1 >= x2 + w2 && x1 + w1 <= x2 && y1 >= y2 + h2 && y1 <= y2) { return true; }
+	if (x1 + w1 >= x2 + w2 && x1 + w1 <= x2 && y1 + h1 >= y2 + h2 && y1 + h1 <= y2) { return true; }
+
+	return false;
+}	

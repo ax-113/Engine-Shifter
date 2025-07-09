@@ -35,9 +35,14 @@ MUSIC FUNTIONS:
 - music_play
 	goeas in the update_event or in the start_event, plays music when not playing.
 
-GENERAL FUNTIONS:
+INPUT FUNTIONS:
 
 - check_key_press
 	goes in the update_event, gives true if the letter from the char is being pressed.
 - click_on_sprite
-	goeas in the update_event, gives true if the button said is baing pressed inside the sprite. [1 for left, 2 for right, 3 for middle]
+	goes in the update_event, gives true if the button said is baing pressed inside the sprite. [1 for left, 2 for right, 3 for middle]
+
+COLLISION FUNTIONS:
+
+- check_collision
+	goes in update_event, checks if sprite 1 collides with sprite 2.

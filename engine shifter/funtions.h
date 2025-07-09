@@ -19,3 +19,4 @@ std::unique_ptr<sf::Music> load_music(std::string& path);
 void music_play(std::unique_ptr<sf::Music> music);
 bool check_key_press(char letter);
 bool click_on_sprite(short button, sf::Sprite sprite);
+bool check_collision(sf::Sprite spr_1, sf::Sprite spr_2);

@@ -18,5 +18,5 @@ void tile_draw(sf::Sprite tilemap, sf::RenderWindow WINDOW, int tile_width, int 
 std::unique_ptr<sf::Music> load_music(std::string& path);
 void music_play(std::unique_ptr<sf::Music> music);
 bool check_key_press(char letter);
-bool click_on_sprite(short button, sf::Sprite sprite);
+bool click_on_sprite(short button, sf::Sprite sprite, sf::RenderWindow WINDOW);
 bool check_collision(sf::Sprite spr_1, sf::Sprite spr_2);

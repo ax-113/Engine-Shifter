@@ -89,9 +89,9 @@ bool check_key_press(char letter)
 		return false;
 }
 
-bool click_on_sprite(short button, sf::Sprite sprite) 
+bool click_on_sprite(short button, sf::Sprite sprite, sf::RenderWindow WINDOW) 
 {
-	sf::Vector2i position = sf::Mouse::getPosition();
+	sf::Vector2i position = sf::Mouse::getPosition(WINDOW);
 	sf::Mouse::Button temp;
 	switch (button) {
 	case (1):
@@ -116,10 +116,10 @@ bool check_collision(sf::Sprite spr_1, sf::Sprite spr_2)
 	int x2 = spr_2.getPosition().x;
 	int y1 = spr_1.getPosition().y;
 	int y2 = spr_2.getPosition().y;
-	int w1 = spr_1.getScale().x;
-	int w2 = spr_2.getScale().x;
-	int h1 = spr_1.getScale().y;
-	int h2 = spr_2.getScale().y;
+	int w1 = spr_1.getGlobalBounds().width;
+	int w2 = spr_2.getGlobalBounds().width;
+	int h1 = spr_1.getGlobalBounds().height;
+	int h2 = spr_2.getGlobalBounds().height;
 
 	if (x1 >= x2 + w2 && x1 <= x2 && y1 >= y2 + h2 && y1 <= y2) { return true; }
 	if (x1 >= x2 + w2 && x1 <= x2 && y1 + h1 >= y2 + h2 && y1 + h1 <= y2) { return true; }
@@ -128,3 +128,4 @@ bool check_collision(sf::Sprite spr_1, sf::Sprite spr_2)
 
 	return false;
 }	
+

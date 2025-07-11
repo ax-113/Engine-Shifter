@@ -19,7 +19,7 @@ sf::Sprite load_animation_spritesheet(std::string path, int frame_width, int fra
 	return sprite;
 }	 
 
-void animation_draw(int amount_sprites_in_column, int row_to_draw, int frame_width, int frame_height, sf::Sprite sprite, float maxTime, sf::RenderWindow WINDOW, int timer, int temp_val) {
+void animation_draw(sf::RenderWindow WINDOW, int amount_sprites_in_column, int row_to_draw, int frame_width, int frame_height, sf::Sprite sprite, float maxTime, int timer, int temp_val) {
 	timer += 0.1;
 	if (timer >= maxTime) {
 		temp_val += frame_width;
@@ -41,7 +41,7 @@ sf::Sprite load_sprite(std::string path)
 	return sprite;
 }
 
-void sprite_draw(sf::Sprite sprite, sf::RenderWindow WINDOW)
+void sprite_draw(sf::RenderWindow WINDOW, sf::Sprite sprite)
 {
 	WINDOW.draw(sprite);
 }
@@ -56,7 +56,7 @@ sf::Sprite load_tileset(std::string path, int tile_width, int tile_height)
 	return sprite;
 }
 
-void tile_draw(sf::Sprite tilemap, sf::RenderWindow WINDOW, int tile_width, int tile_height, int row, int column)
+void tile_draw(sf::RenderWindow WINDOW, sf::Sprite tilemap, int tile_width, int tile_height, int row, int column)
 {
 	tilemap.setTextureRect({ {row * tile_width, column * tile_height},{tile_width, tile_height} });
 	WINDOW.draw(tilemap);
@@ -88,7 +88,7 @@ bool check_key_down(char letter)
 	return false;
 }
 
-bool click_on_sprite(short button, sf::Sprite sprite, sf::RenderWindow WINDOW) 
+bool click_on_sprite(sf::RenderWindow WINDOW, short button, sf::Sprite sprite) 
 {
 	sf::Vector2i position = sf::Mouse::getPosition(WINDOW);
 	sf::Mouse::Button temp;

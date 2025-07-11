@@ -77,16 +77,16 @@ void music_play(std::unique_ptr<sf::Music> music)
 		}
 	}
 
-bool check_key_press(char letter)
+bool check_key_down(char letter)
 {
-		if (letter >= 'a' && letter <= 'z')
-			letter = letter - 'a' + 'A';
+	if (letter >= 'a' && letter <= 'z')
+		letter = letter - 'a' + 'A';
 
-		if (letter >= 'A' && letter <= 'Z') {
-			sf::Keyboard::Key key = static_cast<sf::Keyboard::Key>(sf::Keyboard::A + (letter - 'A'));
-			return sf::Keyboard::isKeyPressed(key);
-		}
-		return false;
+	if (letter >= 'A' && letter <= 'Z') {
+		sf::Keyboard::Key key = static_cast<sf::Keyboard::Key>(sf::Keyboard::A + (letter - 'A'));
+		return sf::Keyboard::isKeyPressed(key);
+	}
+	return false;
 }
 
 bool click_on_sprite(short button, sf::Sprite sprite, sf::RenderWindow WINDOW) 

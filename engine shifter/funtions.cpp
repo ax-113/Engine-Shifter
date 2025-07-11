@@ -103,7 +103,11 @@ bool click_on_sprite(short button, sf::Sprite sprite, sf::RenderWindow WINDOW)
 			temp = sf::Mouse::Button::Middle;
 			break;
 	}
-	if (sf::Mouse::isButtonPressed(temp) && position.x >= sprite.getPosition().x && position.x <= sprite.getPosition().x + sprite.getScale().x && position.y >= sprite.getPosition().y && position.y <= sprite.getPosition().y + sprite.getScale().y){
+	if (sf::Mouse::isButtonPressed(temp)
+	    && position.x >= sprite.getPosition().x
+	    && position.x <= sprite.getPosition().x + sprite.getScale().x 
+	    && position.y >= sprite.getPosition().y 
+	    && position.y <= sprite.getPosition().y + sprite.getScale().y){
 		return true;
 	}
 }

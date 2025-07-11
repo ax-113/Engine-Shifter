@@ -311,7 +311,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="events.cpp" />
     <ClCompile Include="funtions.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

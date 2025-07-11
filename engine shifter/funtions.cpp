@@ -10,10 +10,9 @@ void randomize() {
 	std::srand(static_cast<unsigned int>(std::time(NULL)));
 }
 
-sf::Sprite load_animation_spritesheet(std::string path, int frame_width, int frame_height) {
-	sf::Texture texture;
-	if (!texture.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
-	sf::Sprite sprite(texture);
+sf::Sprite load_animation_spritesheet(sf::Sprite sprite, sf::Texture tex, std::string path, int frame_width, int frame_height) {
+	if (!tex.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
+	sprite.setTexture(tex);
 	sprite.setTextureRect({ {0,0},{frame_width,frame_height} });
 	sprite.setOrigin({ sprite.getTextureRect().width / 2.0f, sprite.getTextureRect().height / 2.0f });
 	return sprite;
@@ -34,30 +33,28 @@ void animation_draw(int amount_sprites_in_column, int row_to_draw, int frame_wid
 	WINDOW.draw(sprite);
 }
 
-sf::Sprite load_sprite(std::string path)
+sf::Sprite load_sprite(sf::Sprite  sprite, sf::Texture tex, std::string path)
 {
-	sf::Texture texture;
-	if (!texture.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
-	sf::Sprite sprite(texture);
+	if (!tex.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
+	sprite.setTexture(tex);
 	return sprite;
 }
 
-void sprite_draw(sf::Sprite sprite, sf::RenderWindow WINDOW)
+void sprite_draw(sf::Sprite sprite, sf::RenderWindow& WINDOW)
 {
 	WINDOW.draw(sprite);
 }
 
-sf::Sprite load_tileset(std::string path, int tile_width, int tile_height)
+sf::Sprite load_tileset(sf::Sprite sprite, sf::Texture tex, std::string path, int tile_width, int tile_height)
 {
-	sf::Texture texture;
-	if (!texture.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
-	sf::Sprite sprite(texture);
+	if (!tex.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
+	sprite.setTexture(tex);
 	sprite.setTextureRect({ {0,0},{tile_width,tile_height} });
 	sprite.setOrigin({ sprite.getTextureRect().width / 2.0f, sprite.getTextureRect().height / 2.0f });
 	return sprite;
 }
 
-void tile_draw(sf::Sprite tilemap, sf::RenderWindow WINDOW, int tile_width, int tile_height, int row, int column)
+void tile_draw(sf::Sprite tilemap, sf::RenderWindow& WINDOW, int tile_width, int tile_height, int row, int column)
 {
 	tilemap.setTextureRect({ {row * tile_width, column * tile_height},{tile_width, tile_height} });
 	WINDOW.draw(tilemap);
@@ -89,7 +86,7 @@ bool check_key_press(char letter)
 		return false;
 }
 
-bool click_on_sprite(short button, sf::Sprite sprite, sf::RenderWindow WINDOW) 
+bool click_on_sprite(short button, sf::Sprite& sprite, sf::RenderWindow& WINDOW) 
 {
 	sf::Vector2i position = sf::Mouse::getPosition(WINDOW);
 	sf::Mouse::Button temp;
@@ -110,22 +107,8 @@ bool click_on_sprite(short button, sf::Sprite sprite, sf::RenderWindow WINDOW)
 
 }
 
-bool check_collision(sf::Sprite spr_1, sf::Sprite spr_2)
+bool check_collision(sf::Sprite& spr_1, sf::Sprite& spr_2)
 {
-	int x1 = spr_1.getPosition().x;
-	int x2 = spr_2.getPosition().x;
-	int y1 = spr_1.getPosition().y;
-	int y2 = spr_2.getPosition().y;
-	int w1 = spr_1.getGlobalBounds().width;
-	int w2 = spr_2.getGlobalBounds().width;
-	int h1 = spr_1.getGlobalBounds().height;
-	int h2 = spr_2.getGlobalBounds().height;
-
-	if (x1 >= x2 + w2 && x1 <= x2 && y1 >= y2 + h2 && y1 <= y2) { return true; }
-	if (x1 >= x2 + w2 && x1 <= x2 && y1 + h1 >= y2 + h2 && y1 + h1 <= y2) { return true; }
-	if (x1 + w1 >= x2 + w2 && x1 + w1 <= x2 && y1 >= y2 + h2 && y1 <= y2) { return true; }
-	if (x1 + w1 >= x2 + w2 && x1 + w1 <= x2 && y1 + h1 >= y2 + h2 && y1 + h1 <= y2) { return true; }
-
-	return false;
+	return spr_1.getGlobalBounds().intersects(spr_2.getGlobalBounds());
 }	
 

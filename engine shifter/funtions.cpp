@@ -121,11 +121,9 @@ bool check_collision(sf::Sprite spr_1, sf::Sprite spr_2)
 	int h1 = spr_1.getGlobalBounds().height;
 	int h2 = spr_2.getGlobalBounds().height;
 
-	if (x1 >= x2 + w2 && x1 <= x2 && y1 >= y2 + h2 && y1 <= y2) { return true; }
-	if (x1 >= x2 + w2 && x1 <= x2 && y1 + h1 >= y2 + h2 && y1 + h1 <= y2) { return true; }
-	if (x1 + w1 >= x2 + w2 && x1 + w1 <= x2 && y1 >= y2 + h2 && y1 <= y2) { return true; }
-	if (x1 + w1 >= x2 + w2 && x1 + w1 <= x2 && y1 + h1 >= y2 + h2 && y1 + h1 <= y2) { return true; }
-
-	return false;
-}	
-
+	// Check if boxes are NOT intersecting, and return the opposite
+	return !(x1 + w1 < x2 ||     // Right edge of box 1 < left edge of box 2; OR
+                 x1 > x2 + w2 ||     // Left edge of box 1 > right edge of box 2; OR
+                 y1 + h1 < y2 ||     // Bottom of box 1 above top of box 2; OR
+                 y1 > y2 + h2)       // Top of box 1 below bottom of box 2
+}

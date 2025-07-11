@@ -28,7 +28,6 @@ void animation_draw(int amount_sprites_in_column, int row_to_draw, int frame_wid
 		}
 		else {
 			sprite.setTextureRect({ {row_to_draw * frame_width, amount_sprites_in_column * frame_height},{frame_width, frame_height} });
-
 		}
 	}
 	WINDOW.draw(sprite);
@@ -70,17 +69,17 @@ std::unique_ptr<sf::Music> load_music(std::string& path) {
 }
 
 void music_play(std::unique_ptr<sf::Music> music)
-	{
-		if (music->getStatus() != sf::SoundSource::Playing)
-		{
-			music->play();
-		}
+{
+	if (music->getStatus() != sf::SoundSource::Playing) {
+		music->play();
 	}
+}
 
 bool check_key_down(char letter)
 {
-	if (letter >= 'a' && letter <= 'z')
+	if (letter >= 'a' && letter <= 'z') {
 		letter = letter - 'a' + 'A';
+	}
 
 	if (letter >= 'A' && letter <= 'Z') {
 		sf::Keyboard::Key key = static_cast<sf::Keyboard::Key>(sf::Keyboard::A + (letter - 'A'));
@@ -94,20 +93,19 @@ bool click_on_sprite(short button, sf::Sprite sprite, sf::RenderWindow WINDOW)
 	sf::Vector2i position = sf::Mouse::getPosition(WINDOW);
 	sf::Mouse::Button temp;
 	switch (button) {
-	case (1):
-		temp = sf::Mouse::Button::Left;
-		break;
-	case (2):
-		temp = sf::Mouse::Button::Right;
-		break;
-	case (3):
-		temp = sf::Mouse::Button::Middle;
-		break;
+		case (1):
+			temp = sf::Mouse::Button::Left;
+			break;
+		case (2):
+			temp = sf::Mouse::Button::Right;
+			break;
+		case (3):
+			temp = sf::Mouse::Button::Middle;
+			break;
 	}
 	if (sf::Mouse::isButtonPressed(temp) && position.x >= sprite.getPosition().x && position.x <= sprite.getPosition().x + sprite.getScale().x && position.y >= sprite.getPosition().y && position.y <= sprite.getPosition().y + sprite.getScale().y){
 		return true;
 	}
-
 }
 
 bool check_collision(sf::Sprite spr_1, sf::Sprite spr_2)

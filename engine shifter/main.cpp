@@ -4,7 +4,6 @@
 #include "funtions.h"
 #include <iostream>
 #include <cmath>
-#include <ctime>
 
 int main()
 {
@@ -28,14 +27,13 @@ int main()
     sf::View camara(sf::FloatRect(0, 0, cameraWidth, cameraHeight));
 #pragma endregion
 #pragma region start_event
-    sf::Texture red_tex;
     sf::Sprite red;
-    if (!red_tex.loadFromFile("C:/Users/axelc/Downloads/red.png")) { std::cerr << "Failed to load texture 1"; }
+    sf::Texture red_tex = load_sprite("C:/Users/axelc/Downloads/red.png");
     red.setTexture(red_tex);
-    sf::Texture blue_tex;
     sf::Sprite blue;
-    if (!blue_tex.loadFromFile("C:/Users/axelc/Downloads/blue.png")) { std::cerr << "Failed to load texture 2"; }
+    sf::Texture blue_tex = load_sprite("C:/Users/axelc/Downloads/blue.png");
     blue.setTexture(blue_tex);
+
     red.setPosition(gameWidth / 2.0f, gameHeight / 2.0f);
     blue.setPosition(gameWidth / 2.0f + 120.0f, gameHeight / 2.0f);
     float speed = 0.1;
@@ -53,15 +51,15 @@ int main()
         }
 #pragma endregion
 #pragma region update_event
-        if (check_key_press('d')) { red.move(speed,0); }
-        if (check_key_press('a')) { red.move(-speed, 0); }
-        if (check_key_press('s')) { red.move(0, speed); }
-        if (check_key_press('w')) { red.move(0, -speed); }
+        if (check_letter_down('d')) { red.move(speed,0); }
+        if (check_letter_down('a')) { red.move(-speed, 0); }
+        if (check_letter_down('s')) { red.move(0, speed); }
+        if (check_letter_down('w')) { red.move(0, -speed); }
 
-        if (check_key_press('l')) { blue.move(speed, 0); }
-        if (check_key_press('j')) { blue.move(-speed, 0); }
-        if (check_key_press('k')) { blue.move(0, speed); }
-        if (check_key_press('i')) { blue.move(0, -speed); }
+        if (check_other_down(4)) { blue.move(speed, 0); }
+        if (check_other_down(3)) { blue.move(-speed, 0); }
+        if (check_other_down(2)) { blue.move(0, speed); }
+        if (check_other_down(1)) { blue.move(0, -speed); }
 #pragma endregion
 #pragma region DO NOT EDIT
         window.clear();

@@ -10,9 +10,7 @@ void randomize() {
 	std::srand(static_cast<unsigned int>(std::time(NULL)));
 }
 
-sf::Sprite load_animation_spritesheet(sf::Sprite sprite, sf::Texture tex, std::string path, int frame_width, int frame_height) {
-	if (!tex.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
-	sprite.setTexture(tex);
+sf::Sprite load_animation_spritesheet(sf::Sprite sprite, int frame_width, int frame_height) {
 	sprite.setTextureRect({ {0,0},{frame_width,frame_height} });
 	sprite.setOrigin({ sprite.getTextureRect().width / 2.0f, sprite.getTextureRect().height / 2.0f });
 	return sprite;
@@ -33,11 +31,11 @@ void animation_draw(int amount_sprites_in_column, int row_to_draw, int frame_wid
 	WINDOW.draw(sprite);
 }
 
-sf::Sprite load_sprite(sf::Sprite  sprite, sf::Texture tex, std::string path)
+sf::Texture load_sprite(std::string path)
 {
+	sf::Texture tex;
 	if (!tex.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
-	sprite.setTexture(tex);
-	return sprite;
+	return tex;
 }
 
 void sprite_draw(sf::Sprite sprite, sf::RenderWindow& WINDOW)
@@ -45,10 +43,8 @@ void sprite_draw(sf::Sprite sprite, sf::RenderWindow& WINDOW)
 	WINDOW.draw(sprite);
 }
 
-sf::Sprite load_tileset(sf::Sprite sprite, sf::Texture tex, std::string path, int tile_width, int tile_height)
+sf::Sprite load_tileset(sf::Sprite sprite, int tile_width, int tile_height)
 {
-	if (!tex.loadFromFile(path)) { std::cerr << "Failed to load texture" << path; }
-	sprite.setTexture(tex);
 	sprite.setTextureRect({ {0,0},{tile_width,tile_height} });
 	sprite.setOrigin({ sprite.getTextureRect().width / 2.0f, sprite.getTextureRect().height / 2.0f });
 	return sprite;
@@ -74,7 +70,7 @@ void music_play(std::unique_ptr<sf::Music> music)
 		}
 	}
 
-bool check_key_press(char letter)
+bool check_letter_down(char letter)
 {
 		if (letter >= 'a' && letter <= 'z')
 			letter = letter - 'a' + 'A';
@@ -86,7 +82,7 @@ bool check_key_press(char letter)
 		return false;
 }
 
-bool click_on_sprite(short button, sf::Sprite& sprite, sf::RenderWindow& WINDOW) 
+bool click_on_sprite(int button, sf::Sprite& sprite, sf::RenderWindow& WINDOW) 
 {
 	sf::Vector2i position = sf::Mouse::getPosition(WINDOW);
 	sf::Mouse::Button temp;
@@ -111,4 +107,39 @@ bool check_collision(sf::Sprite& spr_1, sf::Sprite& spr_2)
 {
 	return spr_1.getGlobalBounds().intersects(spr_2.getGlobalBounds());
 }	
+
+bool check_other_down(int key_id)
+{
+	switch (key_id)
+	{
+	case 1:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+		break;
+	case 2:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+		break;
+	case 3:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
+		break;
+	case 4:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
+		break;
+	case 5:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::LControl);
+		break;
+	case 6:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::LShift);
+		break;
+	case 7:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Tab);
+		break;
+	case 8:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Enter);
+		break;
+	case 9:
+		return sf::Keyboard::isKeyPressed(sf::Keyboard::Escape);
+		break;
+	}
+	return false;
+}
 

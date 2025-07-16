@@ -11,12 +11,13 @@ int main()
     int gameWidth = 512; //game width in pixel size
     int gameHeight = 288; //game height in pixel size
     std::string name = "Game 1"; //game name
-    std::string icon_path = "C:/Users/axelc/source/repos/engine shifter/x64/Debug Dynamic/resources/temp_icon.png"; // change the window icon (full path)
+    std::string icon_path = "C:/Users/axelc/downloads/flower.png"; // change the window icon (full path)
     //if you want a camera use this
     int cameraWidth = gameWidth; //camera width in pixel size
     int cameraHeight = gameHeight; //camera height in pixel size
 #pragma endregion
 #pragma region DO NOT EDIT
+    
 
     sf::RenderWindow window(sf::VideoMode(gameWidth, gameHeight) , name);
 
